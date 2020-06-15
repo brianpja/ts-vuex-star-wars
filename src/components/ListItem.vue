@@ -4,7 +4,7 @@
       {{ item.name }}
     </span>
     <span>
-      {{ item.homeworld }}
+      {{ getPlanetName(item.homeworld) }}
     </span>
   </div>
 </template>
@@ -15,11 +15,24 @@ import ItemModel from "@/models/item";
 
 @Component
 export default class ListItem extends Vue {
-  @Prop() item!: ItemModel | undefined;
+  @Prop() item!: ItemModel;
+  planet: string;
 
-  mounted() {
-    console.log("item in list item", this.item);
+  constructor() {
+    super();
+    this.planet = "";
   }
+
+  getPlanetName(url: string) {
+    const trimmedUrl: string = url.slice(0, url.length - 1);
+    const index: string = trimmedUrl.slice(trimmedUrl.lastIndexOf("/") + 1);
+    const num: number = parseInt(index);
+    return this.$store.state.planets[num - 1] || "sorry no planet";
+  }
+
+  // mounted() {
+  //   console.log("item in list item", this.item);
+  // }
 }
 </script>
 

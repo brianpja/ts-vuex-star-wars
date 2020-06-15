@@ -9,6 +9,8 @@ export default new Vuex.Store({
   state: {
     title: "Header Title from Store",
     list: Array<ItemModel>(),
+    filteredList: Array<ItemModel>(),
+    planets: [],
   },
   mutations: {
     setList(state, list) {
@@ -16,9 +18,23 @@ export default new Vuex.Store({
         return { name: item.name, homeworld: item.homeworld };
       })
       state.list = transformedList;
+      state.filteredList = transformedList;
     },
     addItem(state, item: ItemModel) {
       state.list.push(item);
+    },
+    filterList(state, searchTerm: string) {
+      if (searchTerm === "") {
+        state.filteredList = state.list;
+        return;
+      }
+      const filteredList: Array<ItemModel> = state.list.filter(item => {
+        return item.name.toLowerCase().includes(searchTerm.toLowerCase());
+      })
+      state.filteredList = filteredList;
+    },
+    setPlanets(state, list) {
+      state.planets = list.map((planet: any) => { return planet.name });
     }
   },
   actions: {
@@ -28,12 +44,22 @@ export default new Vuex.Store({
         .then(response => {
           context.commit("setList", response.data.results);
         })
-        .catch(error => {
-          console.log("there has been an error", error);
+        .catch(() => {
+          console.log("there has been an error");
         });
     },
     addItem(context, item) {
       context.commit("addItem", item);
+    },
+    getPlanets(context) {
+      return axios
+        .get("https://swapi.dev/api/planets/")
+        .then(response => {
+          context.commit("setPlanets", response.data.results);
+        })
+        .catch(() => {
+          console.log("an error has occured while getting planets");
+        })
     }
   },
   modules: {}

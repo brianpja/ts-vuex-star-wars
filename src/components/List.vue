@@ -3,7 +3,7 @@
     <div v-if="isLoading">Loading...</div>
     <div v-if="!isLoading">
       <div>
-        <div v-for="item of this.$store.state.list" :key="item.name">
+        <div v-for="item of this.$store.state.filteredList" :key="item.name">
           <ListItem :item="item" />
         </div>
       </div>
@@ -26,14 +26,26 @@ export default class List extends Vue {
   
   mounted() {
     this.isLoading = true;
-    this.$store.dispatch("getList")
+    // this.$store.dispatch("getList")
+    //   .then(() => {
+    //     this.isLoading = false;
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     this.isLoading = false;
+    //   });
+    // this.$store.dispatch("getPlanets")
+    Promise.all([
+      this.$store.dispatch("getList"),
+      this.$store.dispatch("getPlanets")
+    ])
       .then(() => {
         this.isLoading = false;
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
         this.isLoading = false;
-      })
+      });
   }
 }
 </script>
