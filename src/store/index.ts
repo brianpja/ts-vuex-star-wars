@@ -8,11 +8,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     title: "Header Title from Store",
-    list: Array<ItemModel>()
+    list: Array<ItemModel>(),
   },
   mutations: {
     setList(state, list) {
-      state.list = list;
+      const transformedList: Array<ItemModel> = list.map((item: any) => {
+        return { name: item.name, homeworld: item.homeworld };
+      })
+      state.list = transformedList;
     },
     addItem(state, item: ItemModel) {
       state.list.push(item);

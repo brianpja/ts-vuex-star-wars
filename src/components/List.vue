@@ -3,17 +3,8 @@
     <div v-if="isLoading">Loading...</div>
     <div v-if="!isLoading">
       <div>
-        <div
-          class="item-container"
-          v-for="item of this.$store.state.list"
-          :key="item.name"
-        >
-        <span>
-          {{ item.name }}
-        </span>
-        <span>
-          {{ item.homeworld }}
-        </span>
+        <div v-for="item of this.$store.state.list" :key="item.name">
+          <ListItem :item="item" />
         </div>
       </div>
     </div>
@@ -22,9 +13,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import ListItem from "./ListItem.vue";
 
-
-@Component
+@Component({ components: { ListItem } })
 export default class List extends Vue {
   private isLoading: boolean;
 
@@ -37,7 +28,6 @@ export default class List extends Vue {
     this.isLoading = true;
     this.$store.dispatch("getList")
       .then(() => {
-        console.log("newstate", this.$store.state);
         this.isLoading = false;
       })
       .catch((error) => {
@@ -52,6 +42,6 @@ export default class List extends Vue {
 .item-container {
   display: flex;
   justify-content: space-around;
+  color: green;
 }
-
 </style>
