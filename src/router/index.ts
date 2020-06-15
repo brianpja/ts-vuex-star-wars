@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
-import Contracts from "../views/Contracts.vue";
+import Favorites from "../views/Favorites.vue";
 
 Vue.use(VueRouter);
 
@@ -21,9 +21,9 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
-    path: "/contracts",
-    name: "Contracts",
-    component: Contracts
+    path: "/favorites",
+    name: "Favorites",
+    component: Favorites
   }
 ];
 

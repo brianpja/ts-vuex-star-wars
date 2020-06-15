@@ -6,6 +6,8 @@
     <span>
       {{ getPlanetName(item.homeworld) }}
     </span>
+    <input type="checkbox" name="fav" />
+    <label for="fav">Mark as favorite</label>
   </div>
 </template>
 
@@ -29,11 +31,12 @@ export default class ListItem extends Vue {
     const num: number = parseInt(index);
     return this.$store.state.planets[num - 1] || "sorry no planet";
   }
-
-  // mounted() {
-  //   console.log("item in list item", this.item);
-  // }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+  span {
+    margin: 8px 20px;
+  }
+
+</style>

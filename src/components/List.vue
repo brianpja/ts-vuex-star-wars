@@ -26,15 +26,6 @@ export default class List extends Vue {
   
   mounted() {
     this.isLoading = true;
-    // this.$store.dispatch("getList")
-    //   .then(() => {
-    //     this.isLoading = false;
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     this.isLoading = false;
-    //   });
-    // this.$store.dispatch("getPlanets")
     Promise.all([
       this.$store.dispatch("getList"),
       this.$store.dispatch("getPlanets")
@@ -53,7 +44,7 @@ export default class List extends Vue {
 <style scoped>
 .item-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   color: green;
 }
 </style>

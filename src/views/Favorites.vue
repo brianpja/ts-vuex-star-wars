@@ -1,5 +1,5 @@
 <template>
-  <h1>Sign the contract!</h1>
+  <h1>Look at your favorites!</h1>
 </template>
 
 <script lang="ts">
