@@ -1,27 +1,30 @@
 <template>
   <div>
     <form>
-      <input v-model="name" placeholder="item.name" />
-      <input v-model="homeworld" placeholder="item.homeworld" />
-      <button>submit</button>
+      <input v-model="newItem.name" placeholder="Name" />
+      <input v-model="newItem.homeworld" placeholder="Homeworld" />
+      <button @click.prevent="submitItem">submit</button>
     </form>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Item from "@/models/item";
+import ItemModel from "@/models/item";
 
 @Component
 export default class ItemForm extends Vue {
-  item: Item;
+  newItem: ItemModel;
 
   constructor() {
     super();
-    this.item = {
-      name: "",
-      homeworld: ""
-    }
+    this.newItem = new ItemModel();
+  }
+
+  submitItem(): void {
+    this.$store.dispatch("addItem", this.newItem);
+    this.newItem = new ItemModel();
+    console.log("store", this.$store);
   }
 }
 </script>

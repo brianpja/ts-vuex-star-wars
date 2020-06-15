@@ -1,4 +1,4 @@
-export default class Item {
+export default class ItemModel {
   name: string;
   homeworld: string;
 
