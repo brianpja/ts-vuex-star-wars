@@ -15,7 +15,7 @@ export default new Vuex.Store({
   mutations: {
     setList(state, list) {
       const transformedList: Array<ItemModel> = list.map((item: any) => {
-        return { name: item.name, homeworld: item.homeworld };
+        return new ItemModel(item.name, item.homeworld);
       })
       state.list = transformedList;
       state.filteredList = transformedList;

@@ -3,9 +3,9 @@ export default class ItemModel {
   homeworld: string;
   isFavorite: boolean;
 
-  constructor() {
-    this.name = "";
-    this.homeworld = "";
+  constructor(name: string, homeworld: string) {
+    this.name = name || "";
+    this.homeworld = homeworld || "";
     this.isFavorite = false;
   }
 }
