@@ -35,8 +35,10 @@ export default class ListItem extends Vue {
 </script>
 
 <style scoped>
-  span {
-    margin: 8px 20px;
-  }
-
+span {
+  margin: 0px 20px;
+}
+.item-container {
+  margin: 8px 0px;
+}
 </style>

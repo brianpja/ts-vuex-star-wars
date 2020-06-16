@@ -1,4 +1,4 @@
-# ts-log-rocket
+# ts-vuex-star-wars
 
 ## Project setup
 ```

@@ -1,5 +1,5 @@
 <template>
-  <input v-model="searchTerm" @input="onChange" placeholder="search" />
+  <input v-model="searchTerm" @input="onChange" placeholder="search by name" />
 </template>
 
 <script lang="ts">
