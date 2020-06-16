@@ -12,6 +12,13 @@ export default new Vuex.Store({
     filteredList: Array<ItemModel>(),
     planets: [],
   },
+  getters: {
+    favorites(state) {
+      return state.list.filter(item => {
+        return item.isFavorite;
+      })
+    }
+  },
   mutations: {
     setList(state, list) {
       const transformedList: Array<ItemModel> = list.map((item: any) => {

@@ -24,7 +24,6 @@ export default class ItemForm extends Vue {
   submitItem(): void {
     this.$store.dispatch("addItem", this.newItem);
     this.newItem = new ItemModel();
-    console.log("store", this.$store);
   }
 }
 </script>
