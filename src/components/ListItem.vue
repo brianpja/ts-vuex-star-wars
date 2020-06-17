@@ -6,7 +6,12 @@
     <span>
       {{ getPlanetName(item.homeworld) }}
     </span>
-    <input type="checkbox" name="fav" :id="`${item.name}fav`" v-model="item.isFavorite" @click="onClick" />
+    <input
+      type="checkbox"
+      name="fav"
+      :id="`${item.name}fav`"
+      v-model="item.isFavorite"
+    />
     <label :for="`${item.name}fav`">Mark as favorite</label>
   </div>
 </template>
@@ -26,15 +31,11 @@ export default class ListItem extends Vue {
   }
 
   getPlanetName(url: string) {
-    if (!url.includes('http://')) return url;
+    if (!url.includes("http://")) return url;
     const trimmedUrl: string = url.slice(0, url.length - 1);
     const index: string = trimmedUrl.slice(trimmedUrl.lastIndexOf("/") + 1);
     const num: number = parseInt(index);
     return this.$store.state.planets[num - 1] || "sorry no planet";
-  }
-
-  onClick() {
-    console.log("clicking", this.item);
   }
 }
 </script>

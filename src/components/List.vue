@@ -25,18 +25,20 @@ export default class List extends Vue {
   }
   
   mounted() {
-    this.isLoading = true;
-    Promise.all([
-      this.$store.dispatch("getList"),
-      this.$store.dispatch("getPlanets")
-    ])
-      .then(() => {
-        this.isLoading = false;
-      })
-      .catch(error => {
-        console.log(error);
-        this.isLoading = false;
-      });
+    if (!this.$store.state.list.length) {
+      this.isLoading = true;
+      Promise.all([
+        this.$store.dispatch("getList"),
+        this.$store.dispatch("getPlanets")
+      ])
+        .then(() => {
+          this.isLoading = false;
+        })
+        .catch(error => {
+          console.log(error);
+          this.isLoading = false;
+        });
+    }
   }
 }
 </script>

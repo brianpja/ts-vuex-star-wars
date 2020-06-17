@@ -1,7 +1,10 @@
 <template>
   <div>
     <h3>This is the Favorites list</h3>
-    <div>{{ this.items }}</div>
+    <div v-for="item of this.items" :key="item.name" class="item-wrapper">
+      <span>{{ item.name }}</span>
+      <button @click="removeFav(item)">X</button>
+    </div>
   </div>
 </template>
 
@@ -17,9 +20,34 @@ export default class FavoritesList extends Vue {
     super();
     this.items = this.$store.getters.favorites;
   }
+
+  removeFav(item: ItemModel) {
+    item.isFavorite = false;
+    this.items = this.$store.getters.favorites;
+  }
 }
 </script>
 
 <style scoped>
+span {
+  color: green;
+  font-size: 24px;
+  font-weight: 700;
+  margin-right: 12px;
+}
 
+button {
+  color: green;
+  background-color: white;
+  border: solid 2px green;
+  font-weight: 700;
+  border-radius: 3px;
+}
+
+.item-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
+}
 </style>
