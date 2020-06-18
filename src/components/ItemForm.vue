@@ -1,8 +1,8 @@
 <template>
   <div>
     <form>
-      <input v-model="newItem.name" placeholder="Name" />
-      <input v-model="newItem.homeworld" placeholder="Homeworld" />
+      <input v-model="newItem.name" placeholder="Name" required />
+      <input v-model="newItem.homeworld" placeholder="Homeworld" required />
       <button @click.prevent="submitItem">submit</button>
     </form>
   </div>

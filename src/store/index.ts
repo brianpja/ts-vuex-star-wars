@@ -11,6 +11,7 @@ export default new Vuex.Store({
     list: Array<ItemModel>(),
     filteredList: Array<ItemModel>(),
     planets: [],
+    showModal: false
   },
   getters: {
     favorites(state) {
@@ -42,6 +43,12 @@ export default new Vuex.Store({
     },
     setPlanets(state, list) {
       state.planets = list.map((planet: any) => { return planet.name });
+    },
+    showModal(state) {
+      state.showModal = true;
+    },
+    hideModal(state) {
+      state.showModal = false;
     }
   },
   actions: {
