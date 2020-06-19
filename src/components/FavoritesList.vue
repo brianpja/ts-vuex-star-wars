@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>This is the Favorites list</h3>
-    <div v-for="item of this.items" :key="item.name" class="item-wrapper">
+    <div v-for="item of myFavorites" :key="item.name" class="item-wrapper">
       <span>{{ item.name }}</span>
       <button @click="removeFav(item)">X</button>
     </div>
@@ -18,12 +18,20 @@ export default class FavoritesList extends Vue {
 
   constructor() {
     super();
+    // this.items can be used in-place of myFavorites if you want
     this.items = this.$store.getters.favorites;
   }
 
   removeFav(item: ItemModel) {
     item.isFavorite = false;
     this.items = this.$store.getters.favorites;
+  }
+
+  // this method is an in-class getter instead of the getter in the store
+  get myFavorites(): Array<ItemModel> {
+    return this.$store.state.list.filter((item: ItemModel) => {
+      return item.isFavorite;
+    });
   }
 }
 </script>
