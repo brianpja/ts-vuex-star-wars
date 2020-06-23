@@ -11,8 +11,12 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "moment": "^2.27.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
+    "vue-custom-datepicker": "^1.1.6",
+    "vue-draggable": "^2.0.6",
+    "vue-lottie": "^0.2.1",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"

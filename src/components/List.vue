@@ -15,7 +15,9 @@
 import { Component, Vue } from "vue-property-decorator";
 import ListItem from "./ListItem.vue";
 
-@Component({ components: { ListItem } })
+@Component({
+  components: { ListItem },
+})
 export default class List extends Vue {
   private isLoading: boolean;
 
